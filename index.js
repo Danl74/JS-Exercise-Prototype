@@ -6,26 +6,22 @@
         + If a plane takes off, its `isFlying` property is set to true.
         + If a plane lands, its `isFlying` property is set to false.
 */
-
 // EXAMPLE SOLUTION CODE:
 function Airplane(name) {
   this.name = name;
   this.isFlying = false;
 }
-Airplane.prototype.takeOff = function () {
+Airplane.prototype.takeOff = function() {
   this.isFlying = true;
 };
-Airplane.prototype.land = function () {
+Airplane.prototype.land = function() {
   this.isFlying = false;
 };
-
-
 /*
 // 👇 COMPLETE YOUR WORK BELOW 👇
 // 👇 COMPLETE YOUR WORK BELOW 👇
 // 👇 COMPLETE YOUR WORK BELOW 👇
 */
-
 /*
   TASK 1
     - Write a Person Constructor that initializes `name` and `age` from arguments.
@@ -38,11 +34,31 @@ Airplane.prototype.land = function () {
     - Give instances of Person a method `.toString()`:
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
-
-function Person() {
-
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
 }
-
+Person.prototype.eat = function(food) {
+  this.stomach.length < 10 ? this.stomach.push(food) : null;
+};
+Person.prototype.poop = function() {
+  this.stomach = [];
+};
+Person.prototype.toString = function() {
+  return `${this.name}, ${this.age}`;
+};
+const me = new Person({
+  name: "John Doe",
+  age: 27
+});
+for (var i = 0; i < 15; i++) {
+  me.eat("food");
+}
+console.log(me.stomach);
+me.poop();
+console.log(me.stomach);
+console.log(me.toString());
 /*
   TASK 2
     - Write a Car constructor that initializes `model` and `milesPerGallon` from arguments.
@@ -56,11 +72,36 @@ function Person() {
     - STRETCH: A car which runs out of `fuel` while driving can't drive any more distance:
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
-
-function Car() {
-
+function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
 }
-
+Car.prototype.fill = function(gallons) {
+  this.tank += gallons;
+};
+Car.prototype.drive = function(distance) {
+  if (distance / this.milesPerGallon >= this.tank) {
+    this.odometer = this.odometer + this.tank * this.milesPerGallon;
+    this.tank = 0;
+    return `I ran out out fuel at ${this.odometer} miles!`;
+  }
+  this.tank -= distance / this.milesPerGallon;
+  this.odometer += distance;
+};
+const myCar = new Car({
+  model: "Honda Civic",
+  milesPerGallon: 34
+});
+console.log(myCar.tank);
+myCar.fill(15);
+console.log(myCar.tank);
+myCar.drive(60);
+console.log(myCar.tank + ` ` + myCar.odometer);
+myCar.drive(60);
+console.log(myCar.tank + ` ` + myCar.odometer);
+console.log(myCar.drive(460));
 /*
   TASK 3
     - Write a Baby constructor subclassing Person.
@@ -68,28 +109,47 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
-
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age);
+  this.favoriteToy = favoriteToy;
 }
-
+Baby.prototype = Object.create(Person.prototype);
+Baby.prototype.play = function() {
+  return `Playing with ${this.favoriteToy}`;
+};
+const newBaby = {
+  name: "Baby Jo",
+  age: 2,
+  favoriteToy: "JavaScript"
+};
+const meBaby = new Baby(newBaby);
+console.log(meBaby.toString());
+meBaby.eat("apple sauce");
+console.log(meBaby.stomach);
+console.log(meBaby.play());
 /* 
   TASK 4
-
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Whenever a function is contained in the global scope, the value of this inside of that function will be the window object.
+  2. Whenever a function is called by a preceding dot, the object before that dot is this.
+  3.Whenever a constructor function is used, this refers to the specific instance of the object that is created and returned by the constructor function.
+  4. Whenever JavaScript’s call or apply method is used, this is explicitly defined.
 */
-
-
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
-if (typeof exports !== 'undefined') {
-  module.exports = module.exports || {}
-  if (Airplane) { module.exports.Airplane = Airplane }
-  if (Person) { module.exports.Person = Person }
-  if (Car) { module.exports.Car = Car }
-  if (Baby) { module.exports.Baby = Baby }
+if (typeof exports !== "undefined") {
+  module.exports = module.exports || {};
+  if (Airplane) {
+    module.exports.Airplane = Airplane;
+  }
+  if (Person) {
+    module.exports.Person = Person;
+  }
+  if (Car) {
+    module.exports.Car = Car;
+  }
+  if (Baby) {
+    module.exports.Baby = Baby;
+  }
 }
