@@ -112,7 +112,7 @@ const newBaby = {
   age: 2,
   favoriteToy: "Ball"
 };
-const meBaby = new Baby(newBaby);
+
 
 /* 
   TASK 4
@@ -123,7 +123,7 @@ const meBaby = new Baby(newBaby);
   2. Whenever a function is called by a preceding dot, the object before that dot is this.
 
   3.Whenever a constructor function is used, this refers to the specific instance of the object that is created and returned by the constructor function.
-  
+
   4. Whenever JavaScript’s call or apply method is used, this is explicitly defined.
 */
 ///////// END OF CHALLENGE /////////
