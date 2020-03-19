@@ -91,8 +91,8 @@ Car.prototype.drive = function(distance) {
   this.odometer += distance;
 };
 const myCar = new Car({
-  model: "Honda Civic",
-  milesPerGallon: 34
+  model: "nissan",
+  milesPerGallon: 20
 });
 console.log(myCar.tank);
 myCar.fill(15);
@@ -118,13 +118,13 @@ Baby.prototype.play = function() {
   return `Playing with ${this.favoriteToy}`;
 };
 const newBaby = {
-  name: "Baby Jo",
+  name: "Danl",
   age: 2,
-  favoriteToy: "JavaScript"
+  favoriteToy: "Ball"
 };
 const meBaby = new Baby(newBaby);
 console.log(meBaby.toString());
-meBaby.eat("apple sauce");
+meBaby.eat("carrots");
 console.log(meBaby.stomach);
 console.log(meBaby.play());
 /* 
