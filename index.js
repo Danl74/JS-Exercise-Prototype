@@ -55,10 +55,7 @@ const me = new Person({
 for (var i = 0; i < 15; i++) {
   me.eat("food");
 }
-console.log(me.stomach);
-me.poop();
-console.log(me.stomach);
-console.log(me.toString());
+
 /*
   TASK 2
     - Write a Car constructor that initializes `model` and `milesPerGallon` from arguments.
@@ -94,14 +91,7 @@ const myCar = new Car({
   model: "nissan",
   milesPerGallon: 20
 });
-console.log(myCar.tank);
-myCar.fill(15);
-console.log(myCar.tank);
-myCar.drive(60);
-console.log(myCar.tank + ` ` + myCar.odometer);
-myCar.drive(60);
-console.log(myCar.tank + ` ` + myCar.odometer);
-console.log(myCar.drive(460));
+
 /*
   TASK 3
     - Write a Baby constructor subclassing Person.
@@ -123,16 +113,17 @@ const newBaby = {
   favoriteToy: "Ball"
 };
 const meBaby = new Baby(newBaby);
-console.log(meBaby.toString());
-meBaby.eat("carrots");
-console.log(meBaby.stomach);
-console.log(meBaby.play());
+
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
+
   1. Whenever a function is contained in the global scope, the value of this inside of that function will be the window object.
+
   2. Whenever a function is called by a preceding dot, the object before that dot is this.
+
   3.Whenever a constructor function is used, this refers to the specific instance of the object that is created and returned by the constructor function.
+  
   4. Whenever JavaScript’s call or apply method is used, this is explicitly defined.
 */
 ///////// END OF CHALLENGE /////////
